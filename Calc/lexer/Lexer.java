@@ -46,10 +46,19 @@ public class Lexer {
 			return new EOF();
 		case ' ' :
 			i=in.read();
-			//Et puis on ne fait rien d'autre car on s'en fiche des espaces
-			return null;
+			return this.getToken();
+		case 13: //retour charriot
+			i=in.read();
+			return this.getToken();
+		case 10: //line feed, qui est la suite du retour charriot
+			i=in.read();
+			return this.getToken();
 		case '=' : 
 			i=in.read();
+			if(i=='='){
+				i=in.read();
+				return new OP(EOP.COMPARE);
+			}
 			return new OP(EOP.EQUAL);
 		case '+' :
 			i=in.read();
@@ -75,14 +84,15 @@ public class Lexer {
 		case '0' :
 			i=in.read();
 			return new LITERAL(0);
-		case 10 : 
-			i=in.read();
-			return null;
 		default : 
-			if('1'<=i && i<='9'){
-				int j=i;
-				i = in.read();
-				return new LITERAL(j - '0');
+			if('0'<=i && i<='9'){
+				int nb=0;
+				while('0'<=i && i<='9'){
+					nb*=10; //Pour rajouter un 0 avant d'aditionner le nouveau chiffre
+					nb += i - '0';
+					i = in.read();
+				}
+				return new LITERAL(nb);
 			}
 			else if ('a'<=i && i<='z'){
 				String s="";

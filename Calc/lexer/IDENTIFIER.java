@@ -1,7 +1,7 @@
 package lexer;
 
 public class IDENTIFIER extends Token {
-	String string;
+	public String string;
 	
 	public IDENTIFIER(char character){
 		this.string = ""+character;

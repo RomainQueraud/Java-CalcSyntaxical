@@ -7,6 +7,7 @@ public enum EOP {
 	TIMES("*"),
 	DIVIDE("/"),
 	LESS("<"),
+	COMPARE("=="),
 	EQUAL("=");
 	
 	private String name = "";

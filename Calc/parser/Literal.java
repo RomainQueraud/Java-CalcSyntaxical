@@ -10,4 +10,9 @@ public int value;
 	public String toString(){
 		return "Literal("+this.value+")";
 	}
+
+	@Override
+	public int eval() {
+		return this.value;
+	}
 }

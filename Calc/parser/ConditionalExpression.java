@@ -18,4 +18,14 @@ public class ConditionalExpression extends Expression {
 		return "ConditionalExpression("+exp1+", "+exp2+", "+exp3+")";
 	}
 
+	@Override
+	public int eval() {
+		if(exp1.eval()>0){ //TODO Vérifier si c'est bien avec 0
+			return exp2.eval();
+		}
+		else{
+			return exp3.eval();
+		}
+	}
+
 }

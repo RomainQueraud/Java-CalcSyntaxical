@@ -1,7 +1,7 @@
 package lexer;
 
 public class OP extends Token {
-	EOP op;
+	public EOP op;
 	
 	public String toString(){
 		return op.toString();

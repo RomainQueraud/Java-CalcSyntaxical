@@ -13,5 +13,10 @@ public class UnaryMinus extends Expression {
 	public String toString() {
 		return "UnaryMinus("+exp+")";
 	}
+
+	@Override
+	public int eval() {
+		return -exp.eval();
+	}
 	
 }

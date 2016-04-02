@@ -10,6 +10,14 @@ public abstract class Expression extends AST { //Abstract Syntax Tree
 		if(t instanceof LITERAL){
 			return new Literal(((LITERAL)t).value);
 		}
+		else if (t instanceof IDENTIFIER){
+			return new Variable(((IDENTIFIER)t).string);
+		}
+		else if(t.toString().equals("-")){
+			Token t2 = SLexer.getToken();
+			Expression exp = Expression.parse(t2);
+			return new UnaryMinus(exp);
+		}
 		else if(t instanceof LPAR){
 			Token t2 = SLexer.getToken();
 			if(t2 instanceof IF){
@@ -44,4 +52,6 @@ public abstract class Expression extends AST { //Abstract Syntax Tree
 			else throw new RuntimeException();
 		} else throw new RuntimeException();
 	}
+	
+	public abstract int eval();
 }
