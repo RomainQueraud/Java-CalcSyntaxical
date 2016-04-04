@@ -100,7 +100,6 @@ public class Lexer {
 					s+=(char)i;
 					i=in.read();
 				}
-				i=in.read();
 				if(s.equals("if")) return new IF();
 				else return new IDENTIFIER(s);
 			}
