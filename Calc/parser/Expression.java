@@ -1,6 +1,7 @@
 package parser;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import lexer.*;
 
@@ -51,10 +52,19 @@ public abstract class Expression extends AST { //Abstract Syntax Tree
 				Token t5 = SLexer.getToken();
 				if(t5 instanceof RPAR){
 					return new BinaryExpression((OP) t2, exp1, exp2);
-					//TODO Verifier que le cast de t2 en OP est légal et faire tous les else ThrowException
 				}
 				else throw new RuntimeException();
 			}
+		}
+		else if(t2 instanceof IDENTIFIER){ //Définition de fonction
+			ArrayList<Expression> exprs = new ArrayList<Expression>();
+			Token t3 = SLexer.getToken();
+			while(!(t3 instanceof RPAR)){
+				Expression exp = Expression.parse(t3);
+				exprs.add(exp);
+				t3 = SLexer.getToken();
+			}
+			return new FunctionExpression((IDENTIFIER)t2, exprs);
 		}
 		else throw new RuntimeException();
 	}
