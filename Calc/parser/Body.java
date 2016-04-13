@@ -22,18 +22,22 @@ public Expression expression;
 	public static Body parse(Token t, ArrayList<Definition> defs) throws UnexpectedCharacter, IOException{
 		if(t instanceof LPAR){
 			Token t2 = SLexer.getToken();
-			if(t2.toString().equals("=")){ //C'est une Definition
-				Definition def = Definition.parseLPAR(t2);
-				defs.add(def);
-				return Body.parse(SLexer.getToken(), defs);
-			}
-			else{
-				Expression exp = Expression.parseLPAR(t2);
-				return new Body(defs, exp);
-			}
+			return parseLPAR(t2, defs);
 		}
 		else{
 			Expression exp = Expression.parse(t);
+			return new Body(defs, exp);
+		}
+	}
+	
+	public static Body parseLPAR(Token t2, ArrayList<Definition> defs) throws UnexpectedCharacter, IOException{
+		if(t2.toString().equals("=")){ //C'est une Definition
+			Definition def = Definition.parseLPAR(t2);
+			defs.add(def);
+			return Body.parse(SLexer.getToken(), defs);
+		}
+		else{
+			Expression exp = Expression.parseLPAR(t2);
 			return new Body(defs, exp);
 		}
 	}

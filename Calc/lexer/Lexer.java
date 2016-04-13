@@ -40,6 +40,7 @@ public class Lexer {
 	}
 	
 	public Token getToken() throws UnexpectedCharacter, IOException {
+		//System.out.println((char) i);
 		switch (i){
 		case -1 : 
 			in.close();
@@ -96,7 +97,7 @@ public class Lexer {
 			}
 			else if ('a'<=i && i<='z'){
 				String s="";
-				while('a'<=i && i<='z'){
+				while(('a'<=i && i<='z') || ('0'<=i && i<='9')){
 					s+=(char)i;
 					i=in.read();
 				}

@@ -29,14 +29,15 @@ public class Head extends AST{
 				while(!(t3 instanceof RPAR)){
 					if(t3 instanceof IDENTIFIER){
 						vars.add((IDENTIFIER)t3);
+						t3 = SLexer.getToken();
 					}
-					else throw new RuntimeException();
+					else throw new RuntimeException("Erreur : Identifieur non reconnu");
 				}
 				return new Head((IDENTIFIER)t2, vars);
 			}
-			else throw new RuntimeException();
+			else throw new RuntimeException("Erreur : Identifieur non reconnu");
 		}
-		else throw new RuntimeException();
+		else throw new RuntimeException("Erreur : Parenthèse gauche manquante");
 	}
 
 	@Override
@@ -49,7 +50,6 @@ public class Head extends AST{
 
 	@Override
 	public int eval() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

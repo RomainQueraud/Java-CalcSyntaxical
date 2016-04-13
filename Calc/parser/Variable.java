@@ -1,6 +1,7 @@
 package parser;
 
 import calc.Memoire;
+import state.Stack;
 
 public class Variable extends Expression {
 	public String value;
@@ -16,13 +17,11 @@ public class Variable extends Expression {
 
 	@Override
 	public int eval() {
-		if(Memoire.variables.containsKey(this.value)){
-			return Memoire.variables.get(this.value);
+		if(Stack.variables.get(Stack.variables.size()-1).containsKey(this.value)){
+			return Stack.variables.get(Stack.variables.size()-1).get(this.value);
 		}
 		else{
 			throw new RuntimeException();
 		}
 	}
-	
-
 }

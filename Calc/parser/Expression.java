@@ -8,7 +8,6 @@ import lexer.*;
 public abstract class Expression extends AST { //Abstract Syntax Tree
 	//Arbre de syntaxe abstraite
 	
-	
 	public static Expression parse(Token t) throws UnexpectedCharacter, IOException{
 		if(t instanceof LITERAL){
 			return new Literal(((LITERAL)t).value);
@@ -24,7 +23,8 @@ public abstract class Expression extends AST { //Abstract Syntax Tree
 		else if(t instanceof LPAR){
 			Token t2 = SLexer.getToken();
 			return Expression.parseLPAR(t2);
-		} else throw new RuntimeException();
+		} 
+		else throw new RuntimeException("Erreur : Expression non reconnue");
 	}
 	
 	public static Expression parseLPAR(Token t2) throws UnexpectedCharacter, IOException{
@@ -34,7 +34,7 @@ public abstract class Expression extends AST { //Abstract Syntax Tree
 			Expression exp3 = Expression.parse(SLexer.getToken());
 			if(SLexer.getToken() instanceof RPAR)
 				return new ConditionalExpression(exp1, exp2, exp3);
-			else throw new RuntimeException();
+			else throw new RuntimeException("Erreur : Parenthèse droite manquante");
 		}
 		else if(t2 instanceof OP){
 			Token t3 = SLexer.getToken();
@@ -42,10 +42,9 @@ public abstract class Expression extends AST { //Abstract Syntax Tree
 			Token t4 = SLexer.getToken();
 			if(t4 instanceof RPAR){
 				if(t2.toString().equals("-")){
-					//Sinon on pourrait caster t2 en OP et tester si EOP.Minus == t2.op
 					return new UnaryMinus(exp1);
 				}
-				else throw new RuntimeException();
+				else throw new RuntimeException("Erreur : Opérateur non reconnu");
 			}
 			else{
 				Expression exp2 = Expression.parse(t4);
@@ -53,7 +52,7 @@ public abstract class Expression extends AST { //Abstract Syntax Tree
 				if(t5 instanceof RPAR){
 					return new BinaryExpression((OP) t2, exp1, exp2);
 				}
-				else throw new RuntimeException();
+				else throw new RuntimeException("Erreur : Parenthèse droite manquante");
 			}
 		}
 		else if(t2 instanceof IDENTIFIER){ //Définition de fonction
@@ -66,6 +65,6 @@ public abstract class Expression extends AST { //Abstract Syntax Tree
 			}
 			return new FunctionExpression((IDENTIFIER)t2, exprs);
 		}
-		else throw new RuntimeException();
+		else throw new RuntimeException("Erreur : Expression non reconnue");
 	}
 }

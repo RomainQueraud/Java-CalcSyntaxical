@@ -30,7 +30,7 @@ public class BinaryExpression extends Expression {
 			case "*": return v1*v2;
 			case "/": return v1/v2;
 			case "==": return (v1==v2) ? 1 : 0;
-			default: throw new RuntimeException();
+			default: throw new RuntimeException("Erreur : Opérateur non reconnu");
 		}
 	}
 }

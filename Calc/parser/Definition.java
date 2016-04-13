@@ -8,6 +8,7 @@ import lexer.LPAR;
 import lexer.RPAR;
 import lexer.Token;
 import lexer.UnexpectedCharacter;
+import state.Stack;
 
 public class Definition extends AST{
 	
@@ -25,7 +26,7 @@ public class Definition extends AST{
 			return Definition.parseLPAR(t2);
 		}
 		else{
-			throw new RuntimeException();
+			throw new RuntimeException("Erreur : Parenthèse gauche manquante");
 		}
 	}
 	
@@ -40,10 +41,10 @@ public class Definition extends AST{
 				return new Definition(ident, exp2);
 			}
 			else{
-				throw new RuntimeException();
+				throw new RuntimeException("Erreur : Parenthèse droite manquante");
 			}
 		}
-		else throw new RuntimeException();
+		else throw new RuntimeException("Erreur : '=' manquant");
 	}
 
 	@Override
@@ -53,7 +54,7 @@ public class Definition extends AST{
 	
 	public int eval(){
 		int eval = this.expression.eval();
-		Memoire.variables.put(this.variable.string, eval);
+		Stack.variables.get(Stack.variables.size()-1).bind(this.variable.string, eval);
 		return eval;
 	}
 }
