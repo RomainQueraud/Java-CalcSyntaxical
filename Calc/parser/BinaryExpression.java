@@ -10,6 +10,9 @@ public class BinaryExpression extends Expression {
 	public Expression exp2;
 	
 	public BinaryExpression(OP op, Expression exp1, Expression exp2){
+		if(op.toString().equals("/") && exp2.eval()==0){
+			throw new RuntimeException("Erreur : division par 0");
+		}
 		this.op = op;
 		this.exp1 = exp1;
 		this.exp2 = exp2;

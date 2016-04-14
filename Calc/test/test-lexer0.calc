@@ -1,2 +1,2 @@
-(define (id x) x)
-(id 11)
+(define (inc x) (+ x 1))
+(inc (+ 3 1))

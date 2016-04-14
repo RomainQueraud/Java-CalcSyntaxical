@@ -12,8 +12,7 @@ public class Lexer {
 			in = new FileReader(file);
 			i = in.read(); // initialize lexer
 		} catch (FileNotFoundException e) {
-			System.err.println("File : " + filename + " not found");
-			throw e; // pass the exception up the stack
+			throw new RuntimeException("Erreur : file " + filename + " not found");
 		} catch (IOException e){
 			in.close(); // close the reader
 			throw e; // pass the exception up the stack

@@ -21,7 +21,7 @@ public class Variable extends Expression {
 			return Stack.variables.get(Stack.variables.size()-1).get(this.value);
 		}
 		else{
-			throw new RuntimeException();
+			throw new RuntimeException("Erreur : Variable '"+this.value+"' non définie");
 		}
 	}
 }

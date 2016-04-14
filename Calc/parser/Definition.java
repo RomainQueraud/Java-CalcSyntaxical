@@ -53,6 +53,9 @@ public class Definition extends AST{
 	}
 	
 	public int eval(){
+		if(Stack.variables.get(Stack.variables.size()-1).containsKey(this.variable.string)){
+			throw new RuntimeException("Erreur : variable '"+this.variable.string+"' déjà définie");
+		}
 		int eval = this.expression.eval();
 		Stack.variables.get(Stack.variables.size()-1).bind(this.variable.string, eval);
 		return eval;

@@ -20,7 +20,7 @@ public class ConditionalExpression extends Expression {
 
 	@Override
 	public int eval() {
-		if(exp1.eval()>0){ //TODO Vérifier si c'est bien avec 0
+		if(exp1.eval()>0){
 			return exp2.eval();
 		}
 		else{

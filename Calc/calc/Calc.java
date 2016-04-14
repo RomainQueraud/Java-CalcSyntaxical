@@ -3,6 +3,7 @@ package calc;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import lexer.EOF;
 import lexer.Token;
 import lexer.UnexpectedCharacter;
 import parser.Body;
@@ -27,7 +28,10 @@ public class Calc {
 		//Body body = Body.parse(t, new ArrayList<Definition>()); //Pour passer la piste bleue
 		//System.out.println(body.eval());
 		Program program = Program.parse(t, new ArrayList<Function>());
-		//System.out.println(program);
-		System.out.println(program.eval());
+		if(SLexer.getToken() instanceof EOF)
+			//System.out.println(program); //Pour afficher l'analyse
+			System.out.println(program.eval());
+		else
+			throw new RuntimeException("Erreur : fin d'analyse effectuée, EOF non atteint");
 	}
 }

@@ -55,6 +55,9 @@ public class Function extends AST {
 	@Override
 	public int eval() {
 		String name = this.head.functionName.string;
+		if(Stack.functions.get(Stack.functions.size()-1).containsKey(name)){
+			throw new RuntimeException("Erreur : fonction déjà définie");
+		}
 		Stack.functions.get(Stack.functions.size()-1).bind(name, this);
 		return 0;
 	}
