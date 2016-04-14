@@ -42,10 +42,12 @@ public class Head extends AST{
 
 	@Override
 	public String toString() {
+		/*
 		String d = "";
 		for(int i=0; i<this.functionVariables.size(); i++)
 			d+=", "+this.functionVariables.get(i);
-		return "Head("+d+this.functionVariables+")";
+		*/
+		return "Head("+this.functionName+", "+this.functionVariables+")";
 	}
 
 	@Override

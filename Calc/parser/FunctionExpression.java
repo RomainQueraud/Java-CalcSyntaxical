@@ -19,10 +19,12 @@ public class FunctionExpression extends Expression {
 
 	@Override
 	public String toString() {
+		/*
 		String e = "";
 		for(int i=0; i<this.expressions.size(); i++)
 			e+=", "+this.expressions.get(i);
-		return "FunctionExpression("+this.identifier+e+")";
+		*/
+		return "FunctionExpression("+this.identifier+", "+this.expressions+")";
 	}
 
 	@Override

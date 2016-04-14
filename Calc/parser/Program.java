@@ -39,10 +39,12 @@ public class Program extends AST {
 
 	@Override
 	public String toString() {
+		/*
 		String d = "";
 		for(int i=0; i<this.functions.size(); i++)
 			d+=this.functions.get(i) + ", ";
-		return "Program("+d+this.body+")";
+		*/
+		return "Program("+this.functions+", "+this.body+")";
 	}
 
 	@Override

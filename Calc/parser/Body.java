@@ -44,10 +44,12 @@ public Expression expression;
 
 	@Override
 	public String toString() {
+		/*
 		String d = "";
 		for(int i=0; i<this.definitions.size(); i++)
 			d+=this.definitions.get(i) + ", ";
-		return "Body("+d+this.expression+")";
+		*/
+		return "Body("+this.definitions+", "+this.expression+")";
 	}
 
 
